@@ -1,0 +1,19 @@
+<form #itemForm="ngForm" (ngSubmit)="onSubmit()">
+<div class="form-group">
+  <label>Name</label>
+  <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="itemService.selectedItem.name">
+</div>
+<div class="form-group">
+  <label>Item Type</label>
+  <input type="text" class="form-control" name="itemType" #name="ngModel" [(ngModel)]="itemService.selectedItem.itemType">
+</div>
+<div class="form-group">
+  <label>Fill Factor</label>
+  <input type="text" class="form-control" name="fillFactor" #name="ngModel" [(ngModel)]="itemService.selectedItem.fillFactor">
+</div>
+<div class="form-group">
+  <button class="btn btn-default" type="submit">Submit</button>
+  <button class="btn btn-default" type="button">Reset</button>
+</div>
+
+</form>
