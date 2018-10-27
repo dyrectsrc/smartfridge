@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 import { ItemsComponent } from './items/items.component';
 import { ItemComponent } from './items/item/item.component';
 import { ItemListComponent } from './items/item-list/item-list.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ItemListComponent } from './items/item-list/item-list.component';
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

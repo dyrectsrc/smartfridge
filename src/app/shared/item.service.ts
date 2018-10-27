@@ -3,13 +3,10 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Item } from './item.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ItemService {
   itemList: AngularFireList<any>;
   selectedItem: Item = new Item();
-
   constructor(private firebase: AngularFireDatabase) { }
 
   getData() {
@@ -21,22 +18,20 @@ export class ItemService {
     this.itemList.push({
       name: item.name,
       itemType: item.itemType,
-      itemUUID: item.itemUUID,
       fillFactor: item.fillFactor
     });
   }
 
-  updateList(item: Item) {
-    this.itemList.update(item.itemUUID,
+  updateItem(item: Item) {
+    this.itemList.update(item.$key,
       {
-        name: item.name,
-        itemType: item.itemType,
-        itemUUID: item.itemUUID,
-        fillFactor: item.fillFactor
+      name: item.name,
+      itemType: item.itemType,
+      fillFactor: item.fillFactor
     });
   }
 
-  deleteItem(itemUUID: string) {
-    this.itemList.remove(itemUUID);
+  deleteItem($key: string) {
+    this.itemList.remove($key);
   }
 }

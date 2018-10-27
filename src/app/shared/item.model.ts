@@ -1,5 +1,5 @@
 export class Item {
-  itemUUID: string;
+  $key: string;
   name: string;
   itemType: string;
   fillFactor: number;
