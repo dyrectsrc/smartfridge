@@ -1,0 +1,11 @@
+mat-form-field input {
+    width: 100%;
+}
+mat-card{
+    width:90%;
+}
+main{
+    background:linear-gradient(0deg,rgba(255,255,255,0.95),rgba(255,255,255,0.95)), url(../assets/images/tmg-facebook_social.jpg) no-repeat;
+    background-size: cover;
+padding-bottom:200px;
+}

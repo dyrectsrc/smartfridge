@@ -17,12 +17,14 @@ export class ItemComponent implements OnInit {
   }
 
   onSubmit(itemForm: NgForm) {
-    if (itemForm.value.$key == null) {
-      this.itemService.insertItem(itemForm.value);
+    if (itemForm.value.itemUUID == null) {
+      this.itemService.handleItemAdded(itemForm.value);
+      this.resetForm(itemForm);
+      this.toastr.success('Submitted Succcessfully', 'Item Register');
     } else {
       this.itemService.updateItem(itemForm.value);
-    this.resetForm(itemForm);
-    this.toastr.success('Submitted Succcessfully', 'Item Register');
+      this.resetForm(itemForm);
+      this.toastr.success('Submitted Succcessfully', 'Item Register');
     }
   }
 
@@ -30,12 +32,12 @@ export class ItemComponent implements OnInit {
     if (itemForm != null) {
       itemForm.reset();
       this.itemService.selectedItem = {
-          $key: '',
-          itemType: '',
-          name: '',
-          fillFactor: null
+        itemUUID: '',
+        itemType: '',
+        name: '',
+        fillFactor: null
       };
-  }
+    }
   }
 
 }

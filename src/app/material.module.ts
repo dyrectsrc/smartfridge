@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import {MatFormFieldModule, MatCardModule, MatInputModule} from '@angular/material';
+import { MatFormFieldModule, MatButtonModule, MatCardModule, MatSelectModule, MatGridListModule, MatExpansionModule, MatInputModule } from '@angular/material';
 
 @NgModule({
-  imports: [MatFormFieldModule, MatCardModule, MatInputModule],
-  exports: [MatFormFieldModule, MatCardModule, MatInputModule]
+  imports: [MatFormFieldModule, MatButtonModule, MatSelectModule, MatCardModule, MatGridListModule, MatExpansionModule, MatInputModule],
+  exports: [MatFormFieldModule, MatButtonModule, MatSelectModule, MatCardModule, MatGridListModule, MatExpansionModule, MatInputModule]
 })
 
 export class MaterialModule {

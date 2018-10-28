@@ -1,15 +1,38 @@
-<h6 class="text-center">Item Register</h6><br/>
-<table class="table table-sm table-hover">
-  <tr *ngFor="let item of itemList">
-      <td>{{item.name}}</td>
-      <td>{{item.position}}</td>
-      <td>
-        <a class="btn" (click)="onEdit(item)">
-          <i class="fa fa-pencil-square-o"></i>
-        </a>
-        <a class="btn" (click)="onDelete(item.$key)">
-          <i class="fa fa-trash-o"></i>
-        </a>
-      </td>
-  </tr>
-</table>
+<h6 class="text-center">Fridge Items</h6><br />
+<div class="row">
+  <div class="col-md-4">
+    <mat-form-field>
+      <mat-select [(value)]="val" placeholder="Show items less than">
+        <mat-option *ngFor="let fillValue of itemService.fillFactorValues" [value]="fillValue.value">
+          {{fillValue.fillFactor}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col-md-4">
+    <mat-form-field>
+      <mat-select [(value)]="val" placeholder="Show by item type">
+        <mat-option *ngFor="let typeValue of itemService.itemTypeValues" [value]="typeValue.value">
+          {{typeValue.type}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let item of itemList">
+    <mat-expansion-panel-header *ngIf="item.fillFactor <= val || item.itemType == val">
+      <mat-panel-title>
+        <h6> {{item.name}}</h6>
+      </mat-panel-title>
+      <mat-panel-description>
+        Item Type: {{item.itemType}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    Fill Factor at: <h2>{{item.fillFactor * 100}}%</h2>
+    <mat-action-row>
+      <button mat-button (click)="onEdit(item)">Edit</button>
+      <button mat-button (click)="onDelete(item.itemUUID)">Delete</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>

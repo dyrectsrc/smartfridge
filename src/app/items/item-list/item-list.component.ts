@@ -9,16 +9,18 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./item-list.component.css']
 })
 export class ItemListComponent implements OnInit {
+
   itemList: Item[];
   constructor(private itemService: ItemService, private tostr: ToastrService) { }
 
   ngOnInit() {
-    const x = this.itemService.getData();
+    const showAll = true;
+    const x = this.itemService.getItems();
     x.snapshotChanges().subscribe(item => {
       this.itemList = [];
       item.forEach(element => {
         const y = element.payload.toJSON();
-        y['$key'] = element.key;
+        y['itemUUID'] = element.key;
         this.itemList.push(y as Item);
       });
     });
@@ -28,9 +30,9 @@ export class ItemListComponent implements OnInit {
     this.itemService.selectedItem = Object.assign({}, emp);
   }
 
-  onDelete(key: string) {
+  onDelete(itemUUID: string) {
     if (confirm('Are you sure to delete this record ?') === true) {
-      this.itemService.deleteItem(key);
+      this.itemService.handleItemRemoved(itemUUID);
       this.tostr.warning('Deleted Successfully', 'Item register');
     }
   }

@@ -1,31 +1,36 @@
-<form #itemForm="ngForm" (ngSubmit)="onSubmit(itemForm)">
-    <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="itemService.selectedItem.$key">
-<mat-form-field>
-  <input matInput type="text" placeholder="Name" name="name" #name="ngModel" [(ngModel)]="itemService.selectedItem.name">
-</mat-form-field>
-<mat-form-field>
-  <input matInput type="text" placeholder="Item Type" name="itemType" #name="ngModel" [(ngModel)]="itemService.selectedItem.itemType">
-</mat-form-field>
-<mat-form-field>
-  <input matInput type="text" placeholder="Fill Factor" name="fillFactor" #name="ngModel" [(ngModel)]="itemService.selectedItem.fillFactor">
-</mat-form-field>
-<div class="form-group">
-    <button class="btn btn-default" type="submit" [disabled]="!itemForm.valid">
-        <i class="fa fa-floppy-o"></i>
-         Submit</button>
-      <button class="btn btn-default" type="button" (click)="resetForm(itemForm)">
-        <i class="fa fa-repeat"></i>
-         Reset</button>
-</div>
-
-
-
-</form>
-
-
-
-
-
-
-
-
+<h4>Add Fridge Items</h4>
+<mat-card>
+  <form #itemForm="ngForm" (ngSubmit)="onSubmit(itemForm)">
+    <input type="hidden" name="itemUUID" #itemUUID="ngModel" [(ngModel)]="itemService.selectedItem.itemUUID">
+    <mat-form-field>
+      <input matInput type="text" required placeholder="Name" name="name" #name="ngModel" [(ngModel)]="itemService.selectedItem.name">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-select matNativeControl required placeholder="Item Type" name="itemType" #name="ngModel" [(ngModel)]="itemService.selectedItem.itemType">
+        <mat-option *ngFor="let itemType of itemService.itemTypeValues" [value]="itemType.value">
+          {{itemType.type}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-select required placeholder="Fill Factor" name="fillFactor" #name="ngModel" [(ngModel)]="itemService.selectedItem.fillFactor">
+        <mat-option *ngFor="let fillValue of itemService.fillFactorValues" [value]="fillValue.value">
+          {{fillValue.fillFactor}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-3">
+          <button mat-fab color="primary" type="submit" [disabled]="!itemForm.valid">Submit</button>
+        </div>
+        <div class="col-md-3">
+          <button mat-fab color="accent" type="button" (click)="resetForm(itemForm)">Reset</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-card>
